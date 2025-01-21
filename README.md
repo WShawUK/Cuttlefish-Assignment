@@ -9,6 +9,22 @@
 
 This is my full Laravel project for the cuttlefish assignment.
 
+The relevant migrations are:
+database\migrations\2025_01_21_043547_create_products_table.php
+database\migrations\2025_01_21_043605_create_product_categories_table.php
+
+The relevant models are:
+app\Models\Product.php
+app\Models\ProductCategory.php
+
+The relevant command is:
+app\Console\Commands\DeactivateOldSocks.php
+
+The relevant database (which is populated with example rows) is:
+database\database.sqlite
+
+Thanks for the opportunity.
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
