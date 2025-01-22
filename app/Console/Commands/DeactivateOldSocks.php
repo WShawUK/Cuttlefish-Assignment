@@ -4,11 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Product;
-
-//
-use Illuminate\Support\Facades\DB;
-use Illuminate\View\View;
-use Illuminate\Support\Collection;
+// use App\Models\ProductCategory;
 
 class DeactivateOldSocks extends Command
 {
@@ -31,10 +27,12 @@ class DeactivateOldSocks extends Command
      */
     public function handle()
     {
-        $oldSocks = Product::where('category_id', '3')
-            ->where('created_at', '<', now()->subYears(2))
-            ->where('is_active', true)
-            ->get();
+        $oldSocks = Product::where('created_at', '<', now()->subYears(2))
+        ->where('is_active', true)
+        ->whereHas('category', function ($query) {
+            $query->where('name', 'socks');
+        })
+        ->get();
         
         if ($oldSocks->isEmpty()) {
             $this->info('No active old socks found');
